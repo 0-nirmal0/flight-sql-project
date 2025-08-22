@@ -1,0 +1,25 @@
+# Ignore compressed and archive files
+*.zip
+*.gz
+*.tar
+*.rar
+
+# Ignore temporary files
+*.tmp
+*.log
+*.bak
+*.swp
+
+# Ignore system files
+.DS_Store
+Thumbs.db
+
+# Ignore Python cache (if you use Python later)
+__pycache__/
+*.pyc
+
+# Ignore environment files
+.env
+
+# Ignore VS Code settings (optional)
+.vscode/
