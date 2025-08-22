@@ -7,6 +7,19 @@ It demonstrates **end-to-end SQL skills**: importing raw data, cleaning, writing
 The database is large (~100MB), making it a great simulation of real-world SQL work.  
 
 ---
+## Dataset 📂
+
+The raw **flight database** (SQL dump) is large (~100 MB), so it’s not stored directly in the repo.  
+You can download it from:
+
+- [GitHub Release](https://github.com/0-nirmal0/flight-sql-project/releases/tag/v1.0)  
+- [Google Drive](https://drive.google.com/file/d/1z2ct1_j9xxulGdqJSw2jhuGZzGezdKGR/view?usp=sharing)
+
+After downloading, import it into PostgreSQL:
+
+```bash
+psql -U postgres -d flightdb -f data/flight_database.sql
+
 
 ## Dataset  
 - **Source**: Flight database (contains tables like `airlines`, `airports`, `flights`, `passengers`)  
