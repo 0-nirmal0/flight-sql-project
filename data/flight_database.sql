@@ -1,2 +1,0 @@
-SELECT * FROM bookings.flights;
-SET search_path TO bookings;
