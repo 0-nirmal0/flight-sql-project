@@ -1,109 +1,70 @@
-# Flight Database SQL Project ✈️
+Flight Database SQL Project ✈️
+Overview
 
-## Overview  
-This project analyzes a real-world **flight database** using PostgreSQL.  
-It demonstrates **end-to-end SQL skills**: importing raw data, cleaning, writing queries, creating views, and extracting insights.  
+This project analyzes a real-world flight database using PostgreSQL.
+It demonstrates end-to-end SQL skills: importing raw data, cleaning, writing queries, creating views, and extracting insights.
 
-The database is large (~100MB), making it a great simulation of real-world SQL work.  
+The database is large (~100MB), making it a great simulation of real-world SQL work.
 
----
-## Dataset 📂
+Dataset 📂
 
-The raw **flight database** (SQL dump) is large (~100 MB), so it’s not stored directly in the repo.  
+The raw flight database (SQL dump) is not stored in this repo because of size (~100 MB).
 You can download it from:
 
+Google Drive
 - [GitHub Release](https://github.com/0-nirmal0/flight-sql-project/releases/tag/v1.0)  
-- [Google Drive](https://drive.google.com/file/d/1z2ct1_j9xxulGdqJSw2jhuGZzGezdKGR/view?usp=sharing)
 
 After downloading, import it into PostgreSQL:
+psql -U postgres -d demo -f flight_database.sql
 
-```bash
-psql -U postgres -d flightdb -f data/flight_database.sql
+Dataset Details
+1. Schema: demo (all tables are created here)
+2. Tables: airlines, airports, flights, passengers, etc.
+3. Format: .sql dump file imported into PostgreSQL
+4. Size: ~100MB
 
+Skills Demonstrated
+1. SQL Basics (SELECT, WHERE, ORDER BY, GROUP BY, HAVING)
+2. Joins (INNER, LEFT, RIGHT)
+3. Aggregations (COUNT, AVG, MAX, MIN, SUM)
+4. Views (saved queries for reporting)
+5. Subqueries & CTEs (Common Table Expressions)
+6. Window Functions (RANK, ROW_NUMBER, PARTITION BY)
+7. Data Cleaning using SQL functions
 
-## Dataset  
-- **Source**: Flight database (contains tables like `airlines`, `airports`, `flights`, `passengers`)  
-- **Format**: `.sql` file imported into PostgreSQL  
-- **Size**: ~100MB  
+Example Queries
 
----
-
-## Skills Demonstrated  
-- SQL Basics (**SELECT, WHERE, ORDER BY, GROUP BY, HAVING**)  
-- **Joins** (INNER, LEFT, RIGHT)  
-- **Aggregations** (COUNT, AVG, MAX, MIN, SUM)  
-- **Views** (saved queries for reporting)  
-- **Subqueries & CTEs** (Common Table Expressions)  
-- **Window Functions** (RANK, ROW_NUMBER, PARTITION BY)  
-- Data Cleaning using SQL functions  
-
----
-
-## Example Queries  
-
-**1. Find the top 5 busiest airports:**  
+1. Find the top 5 busiest airports:
 
 SELECT airport_id, COUNT(*) AS total_flights
-FROM flights
+FROM demo.flights
 GROUP BY airport_id
 ORDER BY total_flights DESC
 LIMIT 5;
 
-**2. Find the most popular airline by passenger count:**
-
-SELECT a.airline_name, COUNT(f.flight_id) AS total_passengers
-FROM airlines a
-JOIN flights f ON a.airline_id = f.airline_id
-GROUP BY a.airline_name
-ORDER BY total_passengers DESC
-LIMIT 1;
-
-
-**3. Create a view for on-time performance:**
-
-CREATE VIEW on_time_performance AS
-SELECT airline_id,
-       COUNT(*) FILTER (WHERE delay_minutes = 0) AS on_time_flights,
-       COUNT(*) AS total_flights,
-       ROUND((COUNT(*) FILTER (WHERE delay_minutes = 0)::decimal / COUNT(*)) * 100, 2) AS on_time_percentage
-FROM flights
-GROUP BY airline_id;
-
-
-## Repository Structure
-
+Repository Structure
 flight-sql-project/
 │
-├── data/                 # Raw flight database .sql file
-├── queries/              # SQL query scripts
-│   ├── joins.sql
-│   ├── views.sql
-│   └── analysis.sql
-├── docs/                 # Notes or ER diagrams
+├── data/                 # (Empty in repo) SQL dump stored in Google Drive
+├── scripts/              # SQL query scripts
+├── results/              # Any exported results
+├── .gitignore
 └── README.md             # Project description
 
-## How to Run
+How to Run
+1. Install PostgreSQL
+2. Create a database and schema
+CREATE DATABASE demo;
+3. Import the .sql file
+psql -U postgres -d demo -f flight_database.sql
+4. Run queries inside /scripts/ to reproduce insights.
 
-**1. Install PostgreSQL.**
-**2.Create a database:**
-CREATE DATABASE flightdb;
+Future Improvements
+Add a Power BI dashboard for flight delays.
+Export cleaned datasets to CSV for analysis in Excel.
 
-**3.Import the .sql file:**
-psql -U postgres -d flightdb -f data/flight_database.sql
 
-**4.Run the queries inside /queries/ to reproduce insights.**
-
-## Future Improvements
-
-**Add a Power BI dashboard for flight delays.**
-**Export cleaned datasets to CSV for analysis in Excel.**
-
-## Author
-
+Author
 👤 Nirmal Kumar M
-
 GitHub: 0-nirmal0
-
 Skills: SQL | Excel | Power BI | Python (Basics)
-
-
